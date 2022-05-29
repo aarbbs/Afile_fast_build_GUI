@@ -15,7 +15,7 @@
         }
         
         body {
-        	border-top: 1px solid #006DB7;
+            border-top: 1px solid #FFF2F2F2;
         }
         
         /*---滚动条默认显示样式--*/
@@ -61,9 +61,7 @@
         
         .yu-alert {
             margin: 0;
-            //position:fixed;
             width:auto;
-            border: 1px solid #006DB7;
         }
         
         .yu-header {
@@ -71,65 +69,107 @@
         }
         
         .yu-sidebar {
-            /*background-color: aliceblue;*/
+            background-color: #FFFFFFFF;
         }
         
         .yu-content {
-            background-color: #c4ff8e0d;
-            /*margin-top: 35px;*/
+            background-color: #FFFFFFFF;
+            border-left: 1px solid #FFF2F2F2;
         }
         
         .web-container {
-            /* margin-top: 35px;*/
+            
         }
     </style>
-    <?
-		import fsys;
-		import fsys.ini
-		import console;
-		
-		配置文件 = "\Afile_fast_build_GUI.ini"
-		
-		if not io.exist(配置文件){
-			ini = fsys.ini(配置文件);
-			
-			ini_app = ini.getSection("软件配置");
-			ini_app.path = "./makefile";
-			ini_app.文件名 = "project_*.mk";
-			ini_app.save();
-			
-			ini_build_module = ini.getSection("编译模块配置");
-			ini_build_module.new = "new";
-			ini_build_module.app = "m=app";
-			ini_build_module.simulator = "m=simulator";
-			ini_build_module.save();
-			
-			ini_build = ini.getSection("编译配置");
-			ini_build.job = "job=8";
-			ini_build.j = "-j 4";
-			ini_build.save();
-		}else {
-			ini = fsys.ini(配置文件)
-			ini_app = ini.getSection("软件配置");
-			ini_build_module = ini.getSection("编译模块配置");
-			ini_build = ini.getSection("编译配置");
-		}
-		
-		var allPrjName = {};
-		var allPrjFileName = {};
-        fsys.enum( ini_app.path, ini_app.文件名,
+<?
+    import fsys;
+    import fsys.ini
+    import console;
+    配置文件 = "\Afile_fast_build_GUI.ini"
+
+    if not io.exist(配置文件){
+        ini = fsys.ini(配置文件);
+
+        ini_app = ini.getSection("软件配置");
+        ini_app.路径 = "./makefile";
+        ini_app.文件名 = "project_*.mk";
+        ini_app.save();
+
+        ini_market = ini.getSection("市场");
+        ini_market.save();
+
+        ini_build_module = ini.getSection("编译模块配置");
+        ini_build_module.new = "new";
+        ini_build_module.app = "m=app";
+        ini_build_module.simulator = "m=simulator";
+        ini_build_module.save();
+
+        ini_build = ini.getSection("编译配置");
+        ini_build.job = "job=8";
+        ini_build.j = "-j 4";
+        ini_build.save();
+    }else {
+        ini = fsys.ini(配置文件)
+        ini_app = ini.getSection("软件配置");
+        ini_market = ini.getSection("市场");
+        ini_build_module = ini.getSection("编译模块配置");
+        ini_build = ini.getSection("编译配置");
+    }
+
+    //********* 移植
+
+    var getAllProjectFiles = function(project_file_dir, match_file_name){
+        var all_project_files_list = {};
+        fsys.enum( project_file_dir, match_file_name,
             function(dirname,filename,fullpath,findData){ 
                 if(filename){ 
-                    fileName = string.split(filename,"_")[3]
-                    if(!table.find(allPrjName, fileName)){
-                    	table.push(allPrjName, fileName);
-                    }
-                    table.push(allPrjFileName, filename);
+                    table.insert(all_project_files_list, filename);
                 }
             } 
-            ,/*如果此参数为false则忽略子目录*/
+            ,false/*如果此参数为false则忽略子目录*/
         );
-    ?>
+        return all_project_files_list;
+    }
+
+    var listToDict = function(p_list){
+        class DictStruct { //这里定义
+            str project_name;
+            str project_file_name;
+        }
+
+        var all_project_files_list_dict = {};
+        for(i=1;#p_list;1){
+            var temp = DictStruct();
+            temp.project_name = string.split(p_list[i],"_")[3];
+            temp.project_file_name = p_list[i];
+            table.push(all_project_files_list_dict,temp)//把a值逐个写到Allinfo中
+        }
+        return all_project_files_list_dict;
+    }
+
+    var tableUnique = function(arr,key){
+        var rAr = {};
+        var temp = {};
+        for(k,v in arr){
+            var a = v[key];
+            if(!rAr[a]){
+                rAr[a]= v;
+                table.insert(temp, a);
+            }
+        }
+        return temp;
+    }
+    //获取所有文件名
+    var allPrjFileName = getAllProjectFiles(ini_app.路径, ini_app.文件名);
+
+    //设置文件名、项目名的键值对
+    var allPrjFileDict = listToDict(allPrjFileName);
+
+    //提取唯一项目名
+    var allPrjName = tableUnique(allPrjFileDict,"project_name")
+    table.sort(allPrjName);
+    //********* 移植end
+?>
     <body>
         <div class="yu-layout">
             <div class="yu-layout-inline">
@@ -139,7 +179,7 @@
                         <div class="yu-menu light vertical">
                             <div class="sub-menu">
                                 <?
-                                	for(k,prjName in allPrjName){
+                                    for(sub, prjName in allPrjName){
                                 ?>
                                 <div class="menu-title">
                                     <i class="iconfont icon-f-text"></i><?=prjName?>
@@ -147,20 +187,22 @@
                                 </div>
                                 <div class="sub-menu" style="height: 0;overflow: hidden">
                                 <?
-                                		for(k2,prjFileName in allPrjFileName){
-                                			if(prjName == string.split(prjFileName,"_")[3]){
-                                			    prjMaket = string.match(prjFileName, "[]^[A-Za-z]+![.mk]");
+                                    	for(k,prjFile in allPrjFileDict){
+                                        	if(prjFile.project_name == prjName){
+                                            	var marketTemp = string.split(prjFile.project_file_name,"_");
+                                            	marketTemp = string.split(marketTemp[#marketTemp],".")[1];
+                                            	prjMaket = ini_market[marketTemp] ? ini_market[marketTemp] : string.find(marketTemp,"^En") ? ini_market["OP"] : marketTemp;
                                 ?>
-                                    <div id="<?= io._exedir ++ prjFileName?>" class="menu-item" style="padding-left: 30px">
-                                    	<?=prjName ++ "-" ++ prjMaket?>
+                                    <div id="<?= io._exedir ++ prjFile.project_file_name?>" class="menu-item" style="padding-left: 30px">
+                                        <?=prjName ++ "-" ++ prjMaket?>
                                     </div>
                                 <?
-                                			}
-                                		}
+                                        	}
+                                    	}
                                 ?>
                                 </div>
-                                <?
-                                	}
+                                <?         
+                                   	}                     
                                 ?>
                             </div>
                         </div>
@@ -174,7 +216,7 @@
 								for(k,module in ini_build_module){
 									
 							?>
-  							<button class="yu-button primary plain"><?=k?></button>
+  							<button class="yu-button primary plain"><?=module?></button>
   							<?
 								}
   							?>
@@ -188,6 +230,7 @@
   							<textarea style="height:100%;"></textarea>
 						</div>
                     </div>
+                    <div class="yu-alert info">makefile</div>
                 </div>
             </div>
         </div>
