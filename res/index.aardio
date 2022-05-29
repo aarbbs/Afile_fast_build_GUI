@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="./css/index.css">
+    </head>
+    <style>
+        html, body {
+            width: 100%;
+            height:100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        body {
+        	border-top: 1px solid #006DB7;
+        }
+        
+        /*---滚动条默认显示样式--*/
+        .custom-scroll-bar::-webkit-scrollbar-thumb {
+            background-color: #018EE8;
+            height: 50px;
+            outline-offset: -2px;
+            outline: 2px solid #fff;
+            -webkit-border-radius: 4px;
+            border: 2px solid #fff;
+        }
+
+        /*---鼠标点击滚动条显示样式--*/
+        .custom-scroll-bar::-webkit-scrollbar-thumb:hover {
+            background-color: #FB4446;
+            height: 50px;
+            -webkit-border-radius: 4px;
+        }
+
+        /*---滚动条大小--*/
+        .custom-scroll-bar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        /*---滚动框背景样式--*/
+        .custom-scroll-bar::-webkit-scrollbar-track-piece {
+            background-color: #fff;
+            -webkit-border-radius: 0;
+        }
+
+        .custom-scroll-bar::-webkit-scrollbar-thumb:active {
+            height: 50px;
+            background-color: #000;
+            -webkit-border-radius: 4px;
+        }
+
+        .wrap {
+            /* border: 1px solid #006DB7; */
+            overflow: auto;
+            overflow-x: hidden;
+        }
+        
+        .yu-alert {
+            margin: 0;
+            //position:fixed;
+            width:auto;
+            border: 1px solid #006DB7;
+        }
+        
+        .yu-header {
+            background-color: antiquewhite;
+        }
+        
+        .yu-sidebar {
+            /*background-color: aliceblue;*/
+        }
+        
+        .yu-content {
+            background-color: #c4ff8e0d;
+            /*margin-top: 35px;*/
+        }
+        
+        .web-container {
+            /* margin-top: 35px;*/
+        }
+    </style>
+    <?
+		import fsys;
+		import fsys.ini
+		import console;
+		
+		配置文件 = "\Afile_fast_build_GUI.ini"
+		
+		if not io.exist(配置文件){
+			ini = fsys.ini(配置文件);
+			
+			ini_app = ini.getSection("软件配置");
+			ini_app.path = "./makefile";
+			ini_app.文件名 = "project_*.mk";
+			ini_app.save();
+			
+			ini_build_module = ini.getSection("编译模块配置");
+			ini_build_module.new = "new";
+			ini_build_module.app = "m=app";
+			ini_build_module.simulator = "m=simulator";
+			ini_build_module.save();
+			
+			ini_build = ini.getSection("编译配置");
+			ini_build.job = "job=8";
+			ini_build.j = "-j 4";
+			ini_build.save();
+		}else {
+			ini = fsys.ini(配置文件)
+			ini_app = ini.getSection("软件配置");
+			ini_build_module = ini.getSection("编译模块配置");
+			ini_build = ini.getSection("编译配置");
+		}
+		
+		var allPrjName = {};
+		var allPrjFileName = {};
+        fsys.enum( ini_app.path, ini_app.文件名,
+            function(dirname,filename,fullpath,findData){ 
+                if(filename){ 
+                    fileName = string.split(filename,"_")[3]
+                    if(!table.find(allPrjName, fileName)){
+                    	table.push(allPrjName, fileName);
+                    }
+                    table.push(allPrjFileName, filename);
+                }
+            } 
+            ,/*如果此参数为false则忽略子目录*/
+        );
+    ?>
+    <body>
+        <div class="yu-layout">
+            <div class="yu-layout-inline">
+                <div class="yu-sidebar custom-scroll-bar wrap">
+                    <div class="yu-alert info" style="width:200px"><i class="iconfont icon-tag"></i>项目名</div>
+                    <div class="web-container">
+                        <div class="yu-menu light vertical">
+                            <div class="sub-menu">
+                                <?
+                                	for(k,prjName in allPrjName){
+                                ?>
+                                <div class="menu-title">
+                                    <i class="iconfont icon-f-text"></i><?=prjName?>
+                                    <i class="iconfont icon-angle-down"></i>
+                                </div>
+                                <div class="sub-menu" style="height: 0;overflow: hidden">
+                                <?
+                                		for(k2,prjFileName in allPrjFileName){
+                                			if(prjName == string.split(prjFileName,"_")[3]){
+                                			    prjMaket = string.match(prjFileName, "[]^[A-Za-z]+![.mk]");
+                                ?>
+                                    <div id="<?= io._exedir ++ prjFileName?>" class="menu-item" style="padding-left: 30px">
+                                    	<?=prjName ++ "-" ++ prjMaket?>
+                                    </div>
+                                <?
+                                			}
+                                		}
+                                ?>
+                                </div>
+                                <?
+                                	}
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="yu-layout-block">
+                    <div id="title-tip" class="yu-alert primary">makefile 完整路径</div>
+                    <div class="yu-content">
+						<div class="yu-button-group">
+							<?
+								for(k,module in ini_build_module){
+									
+							?>
+  							<button class="yu-button primary plain"><?=k?></button>
+  							<?
+								}
+  							?>
+						</div>
+						<div class="yu-input">
+  							<input type="text" class="append" style="width:93%" placeholder="编译命令">
+  							<div class="yu-button append primary" style="width:7%">编译</div>
+						</div>
+						
+						<div class="yu-input textarea">
+  							<textarea style="height:100%;"></textarea>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="./js/index.js"></script>
+    <script type="text/javascript">
+        let menuActivedSub = -1;
+        let menuItemActivedSub = -1;
+        let menus = document.querySelectorAll('.vertical .menu-title');
+        let menuItems = document.querySelectorAll('.sub-menu .menu-item');
+
+        function menuShow(e) {
+            let menuHeight = e.currentTarget.nextElementSibling.getElementsByClassName("menu-item").length * 40;
+            e.currentTarget.classList.toggle('active', true);
+            e.currentTarget.nextElementSibling.style.height = menuHeight + 'px';
+            e.currentTarget.getElementsByClassName("iconfont")[0].classList.toggle('icon-f-text', false);
+            e.currentTarget.getElementsByClassName("iconfont")[0].classList.toggle('icon-eye', true);
+        }
+
+        function menuHide() {
+            menus[menuActivedSub].classList.toggle('active', false);
+            menus[menuActivedSub].nextElementSibling.style.height = '0';
+            menus[menuActivedSub].getElementsByClassName("iconfont")[0].classList.toggle('icon-f-text', true);
+            menus[menuActivedSub].getElementsByClassName("iconfont")[0].classList.toggle('icon-eye', false);
+        }
+
+        Array.from(menus).forEach((item) => {
+            item.addEventListener('click', function(e) {
+                if (-1 == menuActivedSub) {
+                    //显示当前点击的菜单
+                    menuShow(e);
+                } else if (-1 != menuActivedSub && e.currentTarget.classList.contains("active")) {
+                    //隐藏之前显示的菜单
+                    menuHide();
+                } else if (-1 != menuActivedSub) {
+                    //隐藏之前显示的菜单
+                    menuHide();
+                    //显示当前点击的菜单
+                    menuShow(e);
+                } else {
+                    alert("菜单显示/隐藏逻辑错误！");
+                }
+                //记录当前为显示状态的菜单下标
+                for (let i = 0; i < menus.length; i++) {
+                    if (item == menus[i]) {
+                        menuActivedSub = i;
+                    }
+                }
+            })
+        })
+
+        Array.from(menuItems).forEach((item) => {
+            item.addEventListener('click', function(e) {
+                //选中当前点击的菜单子项
+                e.currentTarget.classList.add('active');
+
+                //隐藏非当前点击的、上一次选中的菜单子项
+                if (-1 != menuItemActivedSub && e.currentTarget != menuItems[menuItemActivedSub]) {
+                    menuItems[menuItemActivedSub].classList.remove("active")
+                }
+                document.getElementById("title-tip").innerText = e.currentTarget.id;
+                //记录当前为选中状态的菜单子项下标
+                for (let i = 0; i < menuItems.length; i++) {
+                    if (item == menuItems[i]) {
+                        menuItemActivedSub = i;
+                        return;
+                    }
+                }
+            })
+        })
+    </script>
+</html>

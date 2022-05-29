@@ -1,0 +1,19 @@
+import win.ui;
+/*DSG{{*/
+mainForm = win.form(text="Afile_fast_build_GUI";right=1199;bottom=699)
+mainForm.add()
+/*}}*/
+
+import web.view;
+import wsock.tcp.simpleHttpServer;
+var wb = web.view(mainForm);
+var url = wsock.tcp.simpleHttpServer.startUrl("\res\index.aardio");
+
+if(!_STUDIO_INVOKED){
+	wb.enalbeDefaultContextMenus(false);
+}
+
+wb.go( url );
+
+mainForm.show();
+return win.loopMessage();
