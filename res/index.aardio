@@ -82,11 +82,11 @@
         }
         
         .textarea {
-        	height:100% !important;
+            height:100% !important;
         }
         .textarea>textarea{
-        	width:100%;
-        	height:100%;
+            width:100%;
+            height:100%;
         }
     </style>
 <?
@@ -195,22 +195,22 @@
                                 </div>
                                 <div class="sub-menu" style="height: 0;overflow: hidden">
                                 <?
-                                    	for(k,prjFile in allPrjFileDict){
-                                        	if(prjFile.project_name == prjName){
-                                            	var marketTemp = string.split(prjFile.project_file_name,"_");
-                                            	marketTemp = string.split(marketTemp[#marketTemp],".")[1];
-                                            	prjMaket = ini_market[marketTemp] ? ini_market[marketTemp] : string.find(marketTemp,"^En") ? ini_market["OP"] : marketTemp;
+                                        for(k,prjFile in allPrjFileDict){
+                                            if(prjFile.project_name == prjName){
+                                                var marketTemp = string.split(prjFile.project_file_name,"_");
+                                                marketTemp = string.split(marketTemp[#marketTemp],".")[1];
+                                                prjMaket = ini_market[marketTemp] ? ini_market[marketTemp] : string.find(marketTemp,"^En") ? ini_market["OP"] : marketTemp;
                                 ?>
                                     <div id="<?= io._exedir ++ prjFile.project_file_name?>" class="menu-item" style="padding-left: 30px">
                                         <?=prjName ++ "-" ++ prjMaket?>
                                     </div>
                                 <?
-                                        	}
-                                    	}
+                                            }
+                                        }
                                 ?>
                                 </div>
                                 <?         
-                                   	}                     
+                                       }                     
                                 ?>
                             </div>
                         </div>
@@ -219,29 +219,29 @@
                 <div class="yu-layout-block">
                     <div id="title-tip" class="yu-alert primary">makefile 完整路径</div>
                     
-					<div class="yu-button-group">
-						<?
-							for(k,module in ini_build_module){
-						?>
-  						<button class="yu-button primary plain"><?=module?></button>
-  						<?
-							}
-  						?>
-					</div>
-					
-					<div class="yu-input">
-  						<input type="text" class="append" style="width:93%" placeholder="编译命令">
-  						<div class="yu-button append primary" style="width:7%">编译</div>
-					</div>
+                    <div class="yu-button-group">
+                        <?
+                            for(k,module in ini_build_module){
+                        ?>
+                          <button class="yu-button primary plain"><?=module?></button>
+                          <?
+                            }
+                          ?>
+                    </div>
+                    
+                    <div class="yu-input">
+                          <input type="text" class="append" style="width:93%" placeholder="编译命令">
+                          <div class="yu-button append primary" style="width:7%">编译</div>
+                    </div>
 
-					<div class="yu-input textarea">
-  						<textarea>
-  						</textarea>
-					</div>
-					
-					<div class="yu-alert primary"><i class="iconfont icon-check-circle"></i>
-					hello<p style="float:right; margin:0;">hello</p>
-					</div>
+                    <div class="yu-input textarea">
+                          <textarea>
+                          </textarea>
+                    </div>
+                    
+                    <div class="yu-alert primary"><i class="iconfont icon-check-circle"></i>
+                    hello<p style="float:right; margin:0;">hello</p>
+                    </div>
                 </div>
             </div>
         </div>
