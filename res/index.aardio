@@ -199,7 +199,7 @@
                                             if(prjFile.project_name == prjName){
                                                 var marketTemp = string.split(prjFile.project_file_name,"_");
                                                 marketTemp = string.split(marketTemp[#marketTemp],".")[1];
-                                                prjMaket = ini_market[marketTemp] ? ini_market[marketTemp] : string.find(marketTemp,"^En") ? ini_market["OP"] : marketTemp;
+                                                prjMaket = ini_market[marketTemp] ? ini_market[marketTemp] : string.find(marketTemp,"^En") ? "OP" : marketTemp;
                                 ?>
                                     <div id="<?= io._exedir ++ prjFile.project_file_name?>" class="menu-item" style="padding-left: 30px">
                                         <?=prjName ++ "-" ++ prjMaket?>
