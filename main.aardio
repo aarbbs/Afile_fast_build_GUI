@@ -1,3 +1,4 @@
+//RUNAS//
 import win.ui;
 /*DSG{{*/
 mainForm = win.form(text="Afile_fast_build_GUI";right=1199;bottom=699)
