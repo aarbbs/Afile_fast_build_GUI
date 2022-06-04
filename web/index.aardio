@@ -6,6 +6,18 @@
         <link rel="stylesheet" href="./css/index.css">
     </head>
     <style>
+        @font-face {
+            font-family: 'MONACO';
+            src: url("./font/MONACO.TTF") format('truetype');
+            font-weight:  bold;
+            opacity: 1;
+        }
+        
+        textarea {
+            color: #2016131 !important;
+            font-family: MONACO !important;
+        }
+      
         html, body {
             width: 100%;
             height:100%;
@@ -55,8 +67,11 @@
 
         .wrap {
             /* border: 1px solid #006DB7; */
-            overflow: auto;
-            overflow-x: hidden;
+            overflow: hidden;
+        }
+        
+        .wrap:hover {
+            overflow-y: auto;
         }
         
         .yu-alert {
@@ -99,7 +114,7 @@
         ini = fsys.ini(配置文件);
 
         ini_app = ini.getSection("软件配置");
-        ini_app.路径 = "./makefile";
+        ini_app.路径 = "./res/makefile";
         ini_app.文件名 = "project_*.mk";
         ini_app.save();
 
@@ -181,7 +196,7 @@
     <body>
         <div class="yu-layout">
             <div class="yu-layout-inline">
-                <div class="yu-sidebar custom-scroll-bar wrap">
+                <div class="yu-sidebar custom-scroll-bar wrap" οnmοuseοver="console.log('Hello')">
                     <div class="yu-alert info" style="width:200px"><i class="iconfont icon-tag"></i>项目名</div>
                     <div class="web-container">
                         <div class="yu-menu light vertical">
@@ -193,7 +208,7 @@
                                     <i class="iconfont icon-f-text"></i><?=prjName?>
                                     <i class="iconfont icon-angle-down"></i>
                                 </div>
-                                <div class="sub-menu" style="height: 0;overflow: hidden">
+                                <div class="sub-menu" style="height: 0;overflow: hidden;">
                                 <?
                                         for(k,prjFile in allPrjFileDict){
                                             if(prjFile.project_name == prjName){
@@ -230,12 +245,12 @@
                     </div>
                     
                     <div class="yu-input">
-                          <input type="text" class="append" style="width:93%" placeholder="编译命令">
-                          <div class="yu-button append primary" style="width:7%">编译</div>
+                          <input id="build-input" type="text" class="append" style="width:-webkit-calc(100% - 90px);" placeholder="编译命令">
+                          <button class="yu-button append primary" style="width:90px" onclick="aardio.goBuild(document.getElementById('build-input').value)">Build</button>
                     </div>
 
                     <div class="yu-input textarea">
-                          <textarea></textarea>
+                          <textarea id="build-log"></textarea>
                     </div>
                     
                     <div class="yu-alert primary"><i class="iconfont icon-check-circle"></i>
@@ -251,9 +266,9 @@
 		Array.from(document.getElementById("build-type").children).forEach(function (item) {
     		new yu.Radio(item)
 		})
-		var theRadioGroup = new yu.init("RadioGroup")
-		function buildTypeClick(the) {
-    		console.log(the.innerText)
+		var the = new yu.init("RadioGroup")
+		function buildTypeClick(_this) {
+    		console.log(_this.innerText)
 		}
     
         let menuActivedSub = -1;

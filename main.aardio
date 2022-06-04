@@ -5,15 +5,33 @@ mainForm.add()
 /*}}*/
 
 import web.view;
-import wsock.tcp.simpleHttpServer;
-var wb = web.view(mainForm);
-var url = wsock.tcp.simpleHttpServer.startUrl("\res\index.aardio");
+wb = web.view(mainForm);
 
 if(!_STUDIO_INVOKED){
 	wb.enalbeDefaultContextMenus(false);
 }
 
+
+// 导出为 Javascript 中的 aardio 对象
+wb.external = {
+	goBuild = function(command){
+		import process.popen;
+		
+		testProcess = process.popen(command) // 创建进程
+		for( all,out,err in testProcess.each() ){
+			js = string.concat();
+			wb.doScript("document.getElementById('build-log').value+='"+ string.replace(all, '\r\n', "\\n") +"'");
+			win.delay(10);
+		}
+		wb.doScript("document.getElementById('build-log').value+='\n"+ "[Done!]" +"'");
+	}
+}
+
+import wsock.tcp.simpleHttpServer; 
+var url = wsock.tcp.simpleHttpServer.startSpaUrl("\web\index.aardio")
 wb.go( url );
+
+wb.doScript("document.getElementById('build-input').value = 'ping baidu.com'")
 
 mainForm.show();
 return win.loopMessage();

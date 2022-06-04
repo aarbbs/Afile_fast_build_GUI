@@ -1,15 +1,146 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<project ver="10" name="Afile_fast_build_GUI" libEmbed="true" icon="..." ui="win" output="Afile_fast_build_GUI.exe" CompanyName="单位名称" FileDescription="Afile_fast_build_GUI" LegalCopyright="Copyright (C) Hang 2022" ProductName="Afile_fast_build_GUI" InternalName="Afile_fast_build_GUI" FileVersion="0.0.0.11" ProductVersion="0.0.0.11" publishDir="/dist/" dstrip="false">
+<project ver="10" name="Afile_fast_build_GUI" libEmbed="true" icon="..." ui="win" output="Afile_fast_build_GUI.exe" CompanyName="单位名称" FileDescription="Afile_fast_build_GUI" LegalCopyright="Copyright (C) Hang 2022" ProductName="Afile_fast_build_GUI" InternalName="Afile_fast_build_GUI" FileVersion="0.0.0.11" ProductVersion="0.0.0.11" publishDir="/dist/" dstrip="false" local="false" ignored="false">
 	<file name="main.aardio" path="main.aardio" comment="main.aardio"/>
 	<folder name="资源文件" path="res" embed="true" local="false" ignored="false">
-		<file name="index.aardio" path="res\index.aardio" comment="res\index.aardio"/>
-		<file name="test.aardio" path="res\test.aardio" comment="res\test.aardio"/>
-		<folder name="css" path="res\css" comment="res\css">
-			<file name="index.css" path="res\css\index.css" comment="res\css\index.css"/>
-		</folder>
-		<folder name="js" path="res\js" comment="res\js">
-			<file name="index.js" path="res\js\index.js" comment="res\js\index.js"/>
+		<folder name="makefile" path="res\makefile" comment="res\makefile">
+			<file name="project_S11016032_EnFrPo_IN.mk" path="res\makefile\project_S11016032_EnFrPo_IN.mk" comment="res\makefile\project_S11016032_EnFrPo_IN.mk"/>
+			<file name="project_S1101_1105_EnFrPo (11).mk" path="res\makefile\project_S1101_1105_EnFrPo (11).mk" comment="res\makefile\project_S1101_1105_EnFrPo (11).mk"/>
+			<file name="project_S1101_A1024_EnFrPo.mk" path="res\makefile\project_S1101_A1024_EnFrPo.mk" comment="res\makefile\project_S1101_A1024_EnFrPo.mk"/>
+			<file name="project_S1101_A1024_EnFrPo_IN.mk" path="res\makefile\project_S1101_A1024_EnFrPo_IN.mk" comment="res\makefile\project_S1101_A1024_EnFrPo_IN.mk"/>
+			<file name="project_S1101_A1024_EnFrPo_RU.mk" path="res\makefile\project_S1101_A1024_EnFrPo_RU.mk" comment="res\makefile\project_S1101_A1024_EnFrPo_RU.mk"/>
+			<file name="project_S1101_A1025_EnFrPo.mk" path="res\makefile\project_S1101_A1025_EnFrPo.mk" comment="res\makefile\project_S1101_A1025_EnFrPo.mk"/>
+			<file name="project_S1101_A1025_EnFrPo_IN.mk" path="res\makefile\project_S1101_A1025_EnFrPo_IN.mk" comment="res\makefile\project_S1101_A1025_EnFrPo_IN.mk"/>
+			<file name="project_S1101_A1025_EnFrPo_RU.mk" path="res\makefile\project_S1101_A1025_EnFrPo_RU.mk" comment="res\makefile\project_S1101_A1025_EnFrPo_RU.mk"/>
+			<file name="project_S1101_A1032_EnFrPo.mk" path="res\makefile\project_S1101_A1032_EnFrPo.mk" comment="res\makefile\project_S1101_A1032_EnFrPo.mk"/>
+			<file name="project_S1101_A1032_EnFrPo_IN.mk" path="res\makefile\project_S1101_A1032_EnFrPo_IN.mk" comment="res\makefile\project_S1101_A1032_EnFrPo_IN.mk"/>
+			<file name="project_S1101_A105_EnFrPo (10).mk" path="res\makefile\project_S1101_A105_EnFrPo (10).mk" comment="res\makefile\project_S1101_A105_EnFrPo (10).mk"/>
+			<file name="project_S1101_A105_EnFrPo (14).mk" path="res\makefile\project_S1101_A105_EnFrPo (14).mk" comment="res\makefile\project_S1101_A105_EnFrPo (14).mk"/>
+			<file name="project_S1101_A105_EnFrPo (16).mk" path="res\makefile\project_S1101_A105_EnFrPo (16).mk" comment="res\makefile\project_S1101_A105_EnFrPo (16).mk"/>
+			<file name="project_S1101_A105_EnFrPo (17).mk" path="res\makefile\project_S1101_A105_EnFrPo (17).mk" comment="res\makefile\project_S1101_A105_EnFrPo (17).mk"/>
+			<file name="project_S1101_A105_EnFrPo (18).mk" path="res\makefile\project_S1101_A105_EnFrPo (18).mk" comment="res\makefile\project_S1101_A105_EnFrPo (18).mk"/>
+			<file name="project_S1101_A105_EnFrPo (19).mk" path="res\makefile\project_S1101_A105_EnFrPo (19).mk" comment="res\makefile\project_S1101_A105_EnFrPo (19).mk"/>
+			<file name="project_S1101_A105_EnFrPo (20).mk" path="res\makefile\project_S1101_A105_EnFrPo (20).mk" comment="res\makefile\project_S1101_A105_EnFrPo (20).mk"/>
+			<file name="project_S1101_A105_EnFrPo (21).mk" path="res\makefile\project_S1101_A105_EnFrPo (21).mk" comment="res\makefile\project_S1101_A105_EnFrPo (21).mk"/>
+			<file name="project_S1101_A105_EnFrPo (22).mk" path="res\makefile\project_S1101_A105_EnFrPo (22).mk" comment="res\makefile\project_S1101_A105_EnFrPo (22).mk"/>
+			<file name="project_S1101_A105_EnFrPo (23).mk" path="res\makefile\project_S1101_A105_EnFrPo (23).mk" comment="res\makefile\project_S1101_A105_EnFrPo (23).mk"/>
+			<file name="project_S1101_A105_EnFrPo (24).mk" path="res\makefile\project_S1101_A105_EnFrPo (24).mk" comment="res\makefile\project_S1101_A105_EnFrPo (24).mk"/>
+			<file name="project_S1101_A105_EnFrPo (3).mk" path="res\makefile\project_S1101_A105_EnFrPo (3).mk" comment="res\makefile\project_S1101_A105_EnFrPo (3).mk"/>
+			<file name="project_S1101_A105_EnFrPo (4).mk" path="res\makefile\project_S1101_A105_EnFrPo (4).mk" comment="res\makefile\project_S1101_A105_EnFrPo (4).mk"/>
+			<file name="project_S1101_A105_EnFrPo (5).mk" path="res\makefile\project_S1101_A105_EnFrPo (5).mk" comment="res\makefile\project_S1101_A105_EnFrPo (5).mk"/>
+			<file name="project_S1101_A105_EnFrPo (6).mk" path="res\makefile\project_S1101_A105_EnFrPo (6).mk" comment="res\makefile\project_S1101_A105_EnFrPo (6).mk"/>
+			<file name="project_S1101_A105_EnFrPo (7).mk" path="res\makefile\project_S1101_A105_EnFrPo (7).mk" comment="res\makefile\project_S1101_A105_EnFrPo (7).mk"/>
+			<file name="project_S1101_A105_EnFrPo (9).mk" path="res\makefile\project_S1101_A105_EnFrPo (9).mk" comment="res\makefile\project_S1101_A105_EnFrPo (9).mk"/>
+			<file name="project_S1101_A105_EnFrPo_RU.mk" path="res\makefile\project_S1101_A105_EnFrPo_RU.mk" comment="res\makefile\project_S1101_A105_EnFrPo_RU.mk"/>
+			<file name="project_S1101_A105_EnFrPo_RU1 (1).mk" path="res\makefile\project_S1101_A105_EnFrPo_RU1 (1).mk" comment="res\makefile\project_S1101_A105_EnFrPo_RU1 (1).mk"/>
+			<file name="project_S1101_A105_EnFrPo_RU1 (10).mk" path="res\makefile\project_S1101_A105_EnFrPo_RU1 (10).mk" comment="res\makefile\project_S1101_A105_EnFrPo_RU1 (10).mk"/>
+			<file name="project_S1101_A105_EnFrPo_RU1 (11).mk" path="res\makefile\project_S1101_A105_EnFrPo_RU1 (11).mk" comment="res\makefile\project_S1101_A105_EnFrPo_RU1 (11).mk"/>
+			<file name="project_S1101_A105_EnFrPo_RU1 (12).mk" path="res\makefile\project_S1101_A105_EnFrPo_RU1 (12).mk" comment="res\makefile\project_S1101_A105_EnFrPo_RU1 (12).mk"/>
+			<file name="project_S1101_A105_EnFrPo_RU1 (2).mk" path="res\makefile\project_S1101_A105_EnFrPo_RU1 (2).mk" comment="res\makefile\project_S1101_A105_EnFrPo_RU1 (2).mk"/>
+			<file name="project_S1101_A105_EnFrPo_RU1 (3).mk" path="res\makefile\project_S1101_A105_EnFrPo_RU1 (3).mk" comment="res\makefile\project_S1101_A105_EnFrPo_RU1 (3).mk"/>
+			<file name="project_S1101_A105_EnFrPo_RU1 (4).mk" path="res\makefile\project_S1101_A105_EnFrPo_RU1 (4).mk" comment="res\makefile\project_S1101_A105_EnFrPo_RU1 (4).mk"/>
+			<file name="project_S1101_A105_EnFrPo_RU1 (5).mk" path="res\makefile\project_S1101_A105_EnFrPo_RU1 (5).mk" comment="res\makefile\project_S1101_A105_EnFrPo_RU1 (5).mk"/>
+			<file name="project_S1101_A105_EnFrPo_RU1 (7).mk" path="res\makefile\project_S1101_A105_EnFrPo_RU1 (7).mk" comment="res\makefile\project_S1101_A105_EnFrPo_RU1 (7).mk"/>
+			<file name="project_S1101_A105_EnFrPo_RU1 (8).mk" path="res\makefile\project_S1101_A105_EnFrPo_RU1 (8).mk" comment="res\makefile\project_S1101_A105_EnFrPo_RU1 (8).mk"/>
+			<file name="project_S1101_A105_EnFrPo_RU1 (9).mk" path="res\makefile\project_S1101_A105_EnFrPo_RU1 (9).mk" comment="res\makefile\project_S1101_A105_EnFrPo_RU1 (9).mk"/>
+			<file name="project_S1101_A1224_EnFrPo_IN.mk" path="res\makefile\project_S1101_A1224_EnFrPo_IN.mk" comment="res\makefile\project_S1101_A1224_EnFrPo_IN.mk"/>
+			<file name="project_S1101_A1305_EnFrPo (2).mk" path="res\makefile\project_S1101_A1305_EnFrPo (2).mk" comment="res\makefile\project_S1101_A1305_EnFrPo (2).mk"/>
+			<file name="project_S1101_A14_EnFrPo_RU1 (6).mk" path="res\makefile\project_S1101_A14_EnFrPo_RU1 (6).mk" comment="res\makefile\project_S1101_A14_EnFrPo_RU1 (6).mk"/>
+			<file name="project_S1101_A2024_EnFrPo.mk" path="res\makefile\project_S1101_A2024_EnFrPo.mk" comment="res\makefile\project_S1101_A2024_EnFrPo.mk"/>
+			<file name="project_S1101_A2024_EnFrPo_IN.mk" path="res\makefile\project_S1101_A2024_EnFrPo_IN.mk" comment="res\makefile\project_S1101_A2024_EnFrPo_IN.mk"/>
+			<file name="project_S1101_A2024_EnFrPo_RU.mk" path="res\makefile\project_S1101_A2024_EnFrPo_RU.mk" comment="res\makefile\project_S1101_A2024_EnFrPo_RU.mk"/>
+			<file name="project_S1101_AB1025_EnFrPo.mk" path="res\makefile\project_S1101_AB1025_EnFrPo.mk" comment="res\makefile\project_S1101_AB1025_EnFrPo.mk"/>
+			<file name="project_S1101_F05_EnFrPo (15).mk" path="res\makefile\project_S1101_F05_EnFrPo (15).mk" comment="res\makefile\project_S1101_F05_EnFrPo (15).mk"/>
+			<file name="project_S1101_G25_EnFrPo_RU.mk" path="res\makefile\project_S1101_G25_EnFrPo_RU.mk" comment="res\makefile\project_S1101_G25_EnFrPo_RU.mk"/>
+			<file name="project_S1115_355_EnFrPo (6).mk" path="res\makefile\project_S1115_355_EnFrPo (6).mk" comment="res\makefile\project_S1115_355_EnFrPo (6).mk"/>
+			<file name="project_S1115_A105_EnFrPo (1).mk" path="res\makefile\project_S1115_A105_EnFrPo (1).mk" comment="res\makefile\project_S1115_A105_EnFrPo (1).mk"/>
+			<file name="project_S1115_A105_EnFrPo (10).mk" path="res\makefile\project_S1115_A105_EnFrPo (10).mk" comment="res\makefile\project_S1115_A105_EnFrPo (10).mk"/>
+			<file name="project_S1115_A105_EnFrPo (11).mk" path="res\makefile\project_S1115_A105_EnFrPo (11).mk" comment="res\makefile\project_S1115_A105_EnFrPo (11).mk"/>
+			<file name="project_S1115_A105_EnFrPo (12).mk" path="res\makefile\project_S1115_A105_EnFrPo (12).mk" comment="res\makefile\project_S1115_A105_EnFrPo (12).mk"/>
+			<file name="project_S1115_A105_EnFrPo (13).mk" path="res\makefile\project_S1115_A105_EnFrPo (13).mk" comment="res\makefile\project_S1115_A105_EnFrPo (13).mk"/>
+			<file name="project_S1115_A105_EnFrPo (14).mk" path="res\makefile\project_S1115_A105_EnFrPo (14).mk" comment="res\makefile\project_S1115_A105_EnFrPo (14).mk"/>
+			<file name="project_S1115_A105_EnFrPo (15).mk" path="res\makefile\project_S1115_A105_EnFrPo (15).mk" comment="res\makefile\project_S1115_A105_EnFrPo (15).mk"/>
+			<file name="project_S1115_A105_EnFrPo (16).mk" path="res\makefile\project_S1115_A105_EnFrPo (16).mk" comment="res\makefile\project_S1115_A105_EnFrPo (16).mk"/>
+			<file name="project_S1115_A105_EnFrPo (17).mk" path="res\makefile\project_S1115_A105_EnFrPo (17).mk" comment="res\makefile\project_S1115_A105_EnFrPo (17).mk"/>
+			<file name="project_S1115_A105_EnFrPo (18).mk" path="res\makefile\project_S1115_A105_EnFrPo (18).mk" comment="res\makefile\project_S1115_A105_EnFrPo (18).mk"/>
+			<file name="project_S1115_A105_EnFrPo (19).mk" path="res\makefile\project_S1115_A105_EnFrPo (19).mk" comment="res\makefile\project_S1115_A105_EnFrPo (19).mk"/>
+			<file name="project_S1115_A105_EnFrPo (2).mk" path="res\makefile\project_S1115_A105_EnFrPo (2).mk" comment="res\makefile\project_S1115_A105_EnFrPo (2).mk"/>
+			<file name="project_S1115_A105_EnFrPo (20).mk" path="res\makefile\project_S1115_A105_EnFrPo (20).mk" comment="res\makefile\project_S1115_A105_EnFrPo (20).mk"/>
+			<file name="project_S1115_A105_EnFrPo (21).mk" path="res\makefile\project_S1115_A105_EnFrPo (21).mk" comment="res\makefile\project_S1115_A105_EnFrPo (21).mk"/>
+			<file name="project_S1115_A105_EnFrPo (22).mk" path="res\makefile\project_S1115_A105_EnFrPo (22).mk" comment="res\makefile\project_S1115_A105_EnFrPo (22).mk"/>
+			<file name="project_S1115_A105_EnFrPo (23).mk" path="res\makefile\project_S1115_A105_EnFrPo (23).mk" comment="res\makefile\project_S1115_A105_EnFrPo (23).mk"/>
+			<file name="project_S1115_A105_EnFrPo (24).mk" path="res\makefile\project_S1115_A105_EnFrPo (24).mk" comment="res\makefile\project_S1115_A105_EnFrPo (24).mk"/>
+			<file name="project_S1115_A105_EnFrPo (25).mk" path="res\makefile\project_S1115_A105_EnFrPo (25).mk" comment="res\makefile\project_S1115_A105_EnFrPo (25).mk"/>
+			<file name="project_S1115_A105_EnFrPo (26).mk" path="res\makefile\project_S1115_A105_EnFrPo (26).mk" comment="res\makefile\project_S1115_A105_EnFrPo (26).mk"/>
+			<file name="project_S1115_A105_EnFrPo (27).mk" path="res\makefile\project_S1115_A105_EnFrPo (27).mk" comment="res\makefile\project_S1115_A105_EnFrPo (27).mk"/>
+			<file name="project_S1115_A105_EnFrPo (3).mk" path="res\makefile\project_S1115_A105_EnFrPo (3).mk" comment="res\makefile\project_S1115_A105_EnFrPo (3).mk"/>
+			<file name="project_S1115_A105_EnFrPo (30).mk" path="res\makefile\project_S1115_A105_EnFrPo (30).mk" comment="res\makefile\project_S1115_A105_EnFrPo (30).mk"/>
+			<file name="project_S1115_A105_EnFrPo (31).mk" path="res\makefile\project_S1115_A105_EnFrPo (31).mk" comment="res\makefile\project_S1115_A105_EnFrPo (31).mk"/>
+			<file name="project_S1115_A105_EnFrPo (33).mk" path="res\makefile\project_S1115_A105_EnFrPo (33).mk" comment="res\makefile\project_S1115_A105_EnFrPo (33).mk"/>
+			<file name="project_S1115_A105_EnFrPo (34).mk" path="res\makefile\project_S1115_A105_EnFrPo (34).mk" comment="res\makefile\project_S1115_A105_EnFrPo (34).mk"/>
+			<file name="project_S1115_A105_EnFrPo (35).mk" path="res\makefile\project_S1115_A105_EnFrPo (35).mk" comment="res\makefile\project_S1115_A105_EnFrPo (35).mk"/>
+			<file name="project_S1115_A105_EnFrPo (36).mk" path="res\makefile\project_S1115_A105_EnFrPo (36).mk" comment="res\makefile\project_S1115_A105_EnFrPo (36).mk"/>
+			<file name="project_S1115_A105_EnFrPo (37).mk" path="res\makefile\project_S1115_A105_EnFrPo (37).mk" comment="res\makefile\project_S1115_A105_EnFrPo (37).mk"/>
+			<file name="project_S1115_A105_EnFrPo (38).mk" path="res\makefile\project_S1115_A105_EnFrPo (38).mk" comment="res\makefile\project_S1115_A105_EnFrPo (38).mk"/>
+			<file name="project_S1115_A105_EnFrPo (39).mk" path="res\makefile\project_S1115_A105_EnFrPo (39).mk" comment="res\makefile\project_S1115_A105_EnFrPo (39).mk"/>
+			<file name="project_S1115_A105_EnFrPo (40).mk" path="res\makefile\project_S1115_A105_EnFrPo (40).mk" comment="res\makefile\project_S1115_A105_EnFrPo (40).mk"/>
+			<file name="project_S1115_A105_EnFrPo (41).mk" path="res\makefile\project_S1115_A105_EnFrPo (41).mk" comment="res\makefile\project_S1115_A105_EnFrPo (41).mk"/>
+			<file name="project_S1115_A105_EnFrPo (42).mk" path="res\makefile\project_S1115_A105_EnFrPo (42).mk" comment="res\makefile\project_S1115_A105_EnFrPo (42).mk"/>
+			<file name="project_S1115_A105_EnFrPo (43).mk" path="res\makefile\project_S1115_A105_EnFrPo (43).mk" comment="res\makefile\project_S1115_A105_EnFrPo (43).mk"/>
+			<file name="project_S1115_A105_EnFrPo (44).mk" path="res\makefile\project_S1115_A105_EnFrPo (44).mk" comment="res\makefile\project_S1115_A105_EnFrPo (44).mk"/>
+			<file name="project_S1115_A105_EnFrPo (45).mk" path="res\makefile\project_S1115_A105_EnFrPo (45).mk" comment="res\makefile\project_S1115_A105_EnFrPo (45).mk"/>
+			<file name="project_S1115_A105_EnFrPo (46).mk" path="res\makefile\project_S1115_A105_EnFrPo (46).mk" comment="res\makefile\project_S1115_A105_EnFrPo (46).mk"/>
+			<file name="project_S1115_A105_EnFrPo (48).mk" path="res\makefile\project_S1115_A105_EnFrPo (48).mk" comment="res\makefile\project_S1115_A105_EnFrPo (48).mk"/>
+			<file name="project_S1115_A105_EnFrPo (5).mk" path="res\makefile\project_S1115_A105_EnFrPo (5).mk" comment="res\makefile\project_S1115_A105_EnFrPo (5).mk"/>
+			<file name="project_S1115_A105_EnFrPo (7).mk" path="res\makefile\project_S1115_A105_EnFrPo (7).mk" comment="res\makefile\project_S1115_A105_EnFrPo (7).mk"/>
+			<file name="project_S1115_A105_EnFrPo (8).mk" path="res\makefile\project_S1115_A105_EnFrPo (8).mk" comment="res\makefile\project_S1115_A105_EnFrPo (8).mk"/>
+			<file name="project_S1115_A105_EnFrPo (9).mk" path="res\makefile\project_S1115_A105_EnFrPo (9).mk" comment="res\makefile\project_S1115_A105_EnFrPo (9).mk"/>
+			<file name="project_S1115_A205_EnFrPo (4).mk" path="res\makefile\project_S1115_A205_EnFrPo (4).mk" comment="res\makefile\project_S1115_A205_EnFrPo (4).mk"/>
+			<file name="project_S1115_A5_EnFrPo (47).mk" path="res\makefile\project_S1115_A5_EnFrPo (47).mk" comment="res\makefile\project_S1115_A5_EnFrPo (47).mk"/>
+			<file name="project_S1115_A75_EnFrPo (28).mk" path="res\makefile\project_S1115_A75_EnFrPo (28).mk" comment="res\makefile\project_S1115_A75_EnFrPo (28).mk"/>
+			<file name="project_S1215_A105_EnFrPo (29).mk" path="res\makefile\project_S1215_A105_EnFrPo (29).mk" comment="res\makefile\project_S1215_A105_EnFrPo (29).mk"/>
+			<file name="project_S1301_A105_EnFrPo (1).mk" path="res\makefile\project_S1301_A105_EnFrPo (1).mk" comment="res\makefile\project_S1301_A105_EnFrPo (1).mk"/>
+			<file name="project_S161_A105_EnFrPo (13).mk" path="res\makefile\project_S161_A105_EnFrPo (13).mk" comment="res\makefile\project_S161_A105_EnFrPo (13).mk"/>
+			<file name="project_S2101_A1025_EnFrPo_RU (1).mk" path="res\makefile\project_S2101_A1025_EnFrPo_RU (1).mk" comment="res\makefile\project_S2101_A1025_EnFrPo_RU (1).mk"/>
+			<file name="project_S2101_A1025_EnFrPo_RU (10).mk" path="res\makefile\project_S2101_A1025_EnFrPo_RU (10).mk" comment="res\makefile\project_S2101_A1025_EnFrPo_RU (10).mk"/>
+			<file name="project_S2101_A1025_EnFrPo_RU (11).mk" path="res\makefile\project_S2101_A1025_EnFrPo_RU (11).mk" comment="res\makefile\project_S2101_A1025_EnFrPo_RU (11).mk"/>
+			<file name="project_S2101_A1025_EnFrPo_RU (12).mk" path="res\makefile\project_S2101_A1025_EnFrPo_RU (12).mk" comment="res\makefile\project_S2101_A1025_EnFrPo_RU (12).mk"/>
+			<file name="project_S2101_A1025_EnFrPo_RU (2).mk" path="res\makefile\project_S2101_A1025_EnFrPo_RU (2).mk" comment="res\makefile\project_S2101_A1025_EnFrPo_RU (2).mk"/>
+			<file name="project_S2101_A1025_EnFrPo_RU (3).mk" path="res\makefile\project_S2101_A1025_EnFrPo_RU (3).mk" comment="res\makefile\project_S2101_A1025_EnFrPo_RU (3).mk"/>
+			<file name="project_S2101_A1025_EnFrPo_RU (4).mk" path="res\makefile\project_S2101_A1025_EnFrPo_RU (4).mk" comment="res\makefile\project_S2101_A1025_EnFrPo_RU (4).mk"/>
+			<file name="project_S2101_A1025_EnFrPo_RU (5).mk" path="res\makefile\project_S2101_A1025_EnFrPo_RU (5).mk" comment="res\makefile\project_S2101_A1025_EnFrPo_RU (5).mk"/>
+			<file name="project_S2101_A1025_EnFrPo_RU (6).mk" path="res\makefile\project_S2101_A1025_EnFrPo_RU (6).mk" comment="res\makefile\project_S2101_A1025_EnFrPo_RU (6).mk"/>
+			<file name="project_S2101_A1025_EnFrPo_RU (7).mk" path="res\makefile\project_S2101_A1025_EnFrPo_RU (7).mk" comment="res\makefile\project_S2101_A1025_EnFrPo_RU (7).mk"/>
+			<file name="project_S2101_A1025_EnFrPo_RU (8).mk" path="res\makefile\project_S2101_A1025_EnFrPo_RU (8).mk" comment="res\makefile\project_S2101_A1025_EnFrPo_RU (8).mk"/>
+			<file name="project_S2101_A1025_EnFrPo_RU (9).mk" path="res\makefile\project_S2101_A1025_EnFrPo_RU (9).mk" comment="res\makefile\project_S2101_A1025_EnFrPo_RU (9).mk"/>
+			<file name="project_S2131_A1025_EnFrPo_RU (13).mk" path="res\makefile\project_S2131_A1025_EnFrPo_RU (13).mk" comment="res\makefile\project_S2131_A1025_EnFrPo_RU (13).mk"/>
+			<file name="project_S3115_A105_EnFrPo (32).mk" path="res\makefile\project_S3115_A105_EnFrPo (32).mk" comment="res\makefile\project_S3115_A105_EnFrPo (32).mk"/>
+			<file name="project_S3115_A105_EnFrPo (34).mk" path="res\makefile\project_S3115_A105_EnFrPo (34).mk" comment="res\makefile\project_S3115_A105_EnFrPo (34).mk"/>
+			<file name="project_S3115_A105_EnFrPo (35).mk" path="res\makefile\project_S3115_A105_EnFrPo (35).mk" comment="res\makefile\project_S3115_A105_EnFrPo (35).mk"/>
+			<file name="project_S3115_A105_EnFrPo (37).mk" path="res\makefile\project_S3115_A105_EnFrPo (37).mk" comment="res\makefile\project_S3115_A105_EnFrPo (37).mk"/>
+			<file name="project_S3115_A105_EnFrPo (38).mk" path="res\makefile\project_S3115_A105_EnFrPo (38).mk" comment="res\makefile\project_S3115_A105_EnFrPo (38).mk"/>
+			<file name="project_S3115_A105_EnFrPo (39).mk" path="res\makefile\project_S3115_A105_EnFrPo (39).mk" comment="res\makefile\project_S3115_A105_EnFrPo (39).mk"/>
+			<file name="project_S3115_A105_EnFrPo (40).mk" path="res\makefile\project_S3115_A105_EnFrPo (40).mk" comment="res\makefile\project_S3115_A105_EnFrPo (40).mk"/>
+			<file name="project_S3115_A105_EnFrPo (42).mk" path="res\makefile\project_S3115_A105_EnFrPo (42).mk" comment="res\makefile\project_S3115_A105_EnFrPo (42).mk"/>
+			<file name="project_S3115_A105_EnFrPo (43).mk" path="res\makefile\project_S3115_A105_EnFrPo (43).mk" comment="res\makefile\project_S3115_A105_EnFrPo (43).mk"/>
+			<file name="project_S3115_A105_EnFrPo (44).mk" path="res\makefile\project_S3115_A105_EnFrPo (44).mk" comment="res\makefile\project_S3115_A105_EnFrPo (44).mk"/>
+			<file name="project_S3115_AS5_EnFrPo (41).mk" path="res\makefile\project_S3115_AS5_EnFrPo (41).mk" comment="res\makefile\project_S3115_AS5_EnFrPo (41).mk"/>
+			<file name="project_S3125_A105_EnFrPo (31).mk" path="res\makefile\project_S3125_A105_EnFrPo (31).mk" comment="res\makefile\project_S3125_A105_EnFrPo (31).mk"/>
+			<file name="project_S315_A105_EnFrPo (32).mk" path="res\makefile\project_S315_A105_EnFrPo (32).mk" comment="res\makefile\project_S315_A105_EnFrPo (32).mk"/>
+			<file name="project_S315_A105_EnFrPo (33).mk" path="res\makefile\project_S315_A105_EnFrPo (33).mk" comment="res\makefile\project_S315_A105_EnFrPo (33).mk"/>
+			<file name="project_S34355_A105_EnFrPo (36).mk" path="res\makefile\project_S34355_A105_EnFrPo (36).mk" comment="res\makefile\project_S34355_A105_EnFrPo (36).mk"/>
+			<file name="project_S5101_A105_EnFrPo (12).mk" path="res\makefile\project_S5101_A105_EnFrPo (12).mk" comment="res\makefile\project_S5101_A105_EnFrPo (12).mk"/>
+			<file name="project_S5501_A105_EnFrPo (8).mk" path="res\makefile\project_S5501_A105_EnFrPo (8).mk" comment="res\makefile\project_S5501_A105_EnFrPo (8).mk"/>
+			<folder name="新建文件夹" path="res\makefile\新建文件夹" comment="res\makefile\新建文件夹"/>
 		</folder>
 	</folder>
 	<folder name="窗体文件" path="dlg" comment="目录" embed="true" local="false" ignored="false"/>
+	<folder name="web" path="web" comment="web" local="false" embed="false" ignored="false">
+		<file name="index.html.aardio" path="web\index.html.aardio" comment="web\index.html.aardio"/>
+		<folder name="css" path="web\css" comment="web\css">
+			<file name="index.css" path="web\css\index.css" comment="web\css\index.css"/>
+		</folder>
+		<folder name="js" path="web\js" comment="web\js">
+			<file name="index.js" path="web\js\index.js" comment="web\js\index.js"/>
+		</folder>
+	</folder>
 </project>
