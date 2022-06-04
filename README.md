@@ -4,4 +4,4 @@
 
 ## demo演示
 
-![7743be3c79d6bae76ebe81779840d263.png](https://img.aarbbs.com:1024/images/2022/05/30/7743be3c79d6bae76ebe81779840d263.png)
+![d7f9551639ed6253462eff74ce680b1b.gif](https://img.aarbbs.com:1024/images/2022/06/04/d7f9551639ed6253462eff74ce680b1b.gif)
