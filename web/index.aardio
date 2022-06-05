@@ -279,6 +279,8 @@
 			var p = aardios.process_.popen(value)
 			p.each2(aardios.mainForm,(all,out,err)=>{
 				document.getElementById('build-log').value += out;
+			},()=>{
+				document.getElementById('build-log').value += "----Done!----";
 			})
 		}
 		
