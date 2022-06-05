@@ -2,9 +2,9 @@
 
 批量管理 makefile 和快速编译。
 
-## 关键部分讲解
+## 源码使用说明
 
-注意：【Runy】大佬给的回显方法，需要在 process.popen 中添加 each2 方法
+注意：【Runy】大佬提供的回显方法，需要在 process.popen 中添加 each2 方法
 ```
 	each2 = function(winform,callback,finish){ //在process.popen库里面添加这个each2方法
 		var id = ..table.push(..varpool,callback);
@@ -22,7 +22,7 @@
 	};
 ```
 
-【Runy】提供的aardio WebView2 示例代码：
+【Runy】大佬提供的aardio WebView2 示例代码：
 ```javascript
 import process;
 import process.popen;
@@ -63,6 +63,8 @@ webview.html = `
     var p = aardios.process_.popen("ping baidu.com")
     p.each2(aardios.winform,(a,o,e)=>{
         document.write(o + '</br>')
+    },()=>{
+    	document.write("运行结束")
     })
 </script>
 `
@@ -70,7 +72,11 @@ webview.html = `
 win.loopMessage();
 ```
 
-
-## demo演示
+## 运行demo演示
 
 ![d7f9551639ed6253462eff74ce680b1b.gif](https://img.aarbbs.com:1024/images/2022/06/04/d7f9551639ed6253462eff74ce680b1b.gif)
+
+
+## 关于制作该程序时，遇到的问题和解决方案
+
+![c19540abca1d993273d8aa3fc3ab0508.png](https://img.aarbbs.com:1024/images/2022/06/05/c19540abca1d993273d8aa3fc3ab0508.png)
