@@ -5,34 +5,55 @@ mainForm = win.form(text="Afile_fast_build_GUI";right=1199;bottom=699)
 mainForm.add()
 /*}}*/
 
+import console;
+import process;
+import process.popen;
 import web.view;
-wb = web.view(mainForm);
 
-if(!_STUDIO_INVOKED){
-	wb.enalbeDefaultContextMenus(false);
+namespace process{
+    ..process_ = self
 }
 
+var webview = web.view(mainForm);
+
+if(!_STUDIO_INVOKED){
+	webview.enalbeDefaultContextMenus(false);
+}
+
+mainForm.webview = webview;
+
+..varpool = table.array();
+
+var aardio = {
+	mainForm:mainForm,
+	webview:webview,
+	process:..process,
+	process_:..process_,
+	varpool:..varpool,
+	console:..console
+};
+
+webview.exportHostObject("aardio",aardio);
 
 // 导出为 Javascript 中的 aardio 对象
-wb.external = {
+webview.external = {
 	goBuild = function(command){
-		import process.popen;
-		
 		testProcess = process.popen(command) // 创建进程
 		for( all,out,err in testProcess.each() ){
 			js = string.concat();
-			wb.doScript("document.getElementById('build-log').value+='"+ string.replace(all, '\r\n', "\\n") +"'");
+			webview.doScript("document.getElementById('build-log').value+='"+ string.replace(all, '\r\n', "\\n") +"'");
 			win.delay(10);
 		}
-		wb.doScript("document.getElementById('build-log').value+='\n"+ "[Done!]" +"'");
+		webview.doScript("document.getElementById('build-log').value+='\n"+ "[Done!]" +"'");
 	}
 }
 
 import wsock.tcp.simpleHttpServer; 
 var url = wsock.tcp.simpleHttpServer.startSpaUrl("\web\index.aardio")
-wb.go( url );
+webview.go( url );
 
-wb.doScript("document.getElementById('build-input').value = 'ping baidu.com'")
+webview.doScript("document.getElementById('build-input').value = 'ping baidu.com'")
+
 
 mainForm.show();
 return win.loopMessage();
