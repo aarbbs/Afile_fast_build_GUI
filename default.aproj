@@ -132,9 +132,8 @@
 			<file name="project_S5501_A105_EnFrPo (8).mk" path="res\makefile\project_S5501_A105_EnFrPo (8).mk" comment="res\makefile\project_S5501_A105_EnFrPo (8).mk"/>
 		</folder>
 	</folder>
-	<folder name="web" path="web" comment="web" local="true" embed="true" ignored="false">
+	<folder name="web" path="web" comment="web" local="false" embed="true" ignored="false">
 		<file name="index.aardio" path="web\index.aardio" comment="web\index.aardio"/>
-		<file name="index.html" path="web\index.html" comment="web\index.html"/>
 		<folder name="css" path="web\css" comment="web\css">
 			<file name="index.css" path="web\css\index.css" comment="web\css\index.css"/>
 		</folder>
