@@ -1,10 +1,12 @@
 # Afile_fast_build_GUI
 
-批量管理 makefile 和快速编译。
+该程序使用 aardio + WebView2 制作，用于批量管理 makefile 工程，以及实现一键编译等实用功能。
 
-## 源码使用说明
+## 源码构建使用说明
 
-注意：【Runy】大佬提供的回显方法，需要在 process.popen 中添加 each2 方法
+### 向 aardio 基础库“process.popen”添加自定义方法 echo2
+
+> 该方法由一位好心的群友【Runy】提供，我自己还没整明白这种写法，总之很感谢【Runy】能教我这个方法。
 ```
 	each2 = function(winform,callback,finish){ //在process.popen库里面添加这个each2方法
 		var id = ..table.push(..varpool,callback);
@@ -22,7 +24,9 @@
 	};
 ```
 
-【Runy】大佬提供的aardio WebView2 示例代码：
+### aardio + WebView2 示例代码：
+
+> 示例代码也是由【Runy】。
 ```javascript
 import process;
 import process.popen;
@@ -72,11 +76,11 @@ webview.html = `
 win.loopMessage();
 ```
 
-## 运行demo演示
+### Afile_fast_build_GUI 运行demo演示
 
 ![d7f9551639ed6253462eff74ce680b1b.gif](https://img.aarbbs.com:1024/images/2022/06/04/d7f9551639ed6253462eff74ce680b1b.gif)
 
 
-## 关于制作该程序时，遇到的问题和解决方案
+## Afile_fast_build_GUI 使用说明
 
-![c19540abca1d993273d8aa3fc3ab0508.png](https://img.aarbbs.com:1024/images/2022/06/05/c19540abca1d993273d8aa3fc3ab0508.png)
+。。。待补充
