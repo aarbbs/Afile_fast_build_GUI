@@ -35,22 +35,12 @@ var aardio = {
 
 webview.exportHostObject("aardio",aardio);
 
-// 导出为 Javascript 中的 aardio 对象
-webview.external = {
-	goBuild = function(command){
-		testProcess = process.popen(command) // 创建进程
-		for( all,out,err in testProcess.each() ){
-			js = string.concat();
-			webview.doScript("document.getElementById('build-log').value+='"+ string.replace(all, '\r\n', "\\n") +"'");
-			win.delay(10);
-		}
-		webview.doScript("document.getElementById('build-log').value+='\n"+ "[Done!]" +"'");
-	}
-}
-
 import wsock.tcp.simpleHttpServer; 
 var url = wsock.tcp.simpleHttpServer.startSpaUrl("\web\index.aardio")
 webview.go( url );
+
+webview.wait("")
+webview.doScript("document.getElementById('build-input').value = 'ping baidu.com'");
 
 mainForm.show();
 return win.loopMessage();
