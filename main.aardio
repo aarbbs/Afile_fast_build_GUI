@@ -52,8 +52,5 @@ import wsock.tcp.simpleHttpServer;
 var url = wsock.tcp.simpleHttpServer.startSpaUrl("\web\index.aardio")
 webview.go( url );
 
-webview.doScript("document.getElementById('build-input').value = 'ping baidu.com'")
-
-
 mainForm.show();
 return win.loopMessage();

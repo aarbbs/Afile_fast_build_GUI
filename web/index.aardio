@@ -276,7 +276,6 @@
 			}else {
 				newValue = value;
 			}
-			alert(newValue)
 			let p = aardios.process_.popen(newValue)
 			p.each2(aardios.mainForm,(all,out,err)=>{
 				document.getElementById('build-log').value += out;
