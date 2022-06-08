@@ -1,86 +1,25 @@
 # Afile_fast_build_GUI
 
-该程序使用 aardio + WebView2 制作，用于批量管理 makefile 工程，以及实现一键编译等实用功能。
+使用 aardio + web.view（WebView2） 制作，批量管理本地 makefile 工程文件，用于快速筛选指定工程和一键构建。
 
-## 源码构建使用说明
+特色功能：makefile 工程文件分类、常用构建指令配置和快速选用、一键构建工程、error 信息高亮显示等...
 
-### 向 aardio 基础库“process.popen”添加自定义方法 echo2
+## 运行演示
 
-> 该方法由一位好心的群友【Runy】提供，我自己还没整明白这种写法，总之很感谢【Runy】能教我这个方法。
-```
-	each2 = function(winform,callback,finish){ //在process.popen库里面添加这个each2方法
-		var id = ..table.push(..varpool,callback);
-		var finishid = ..table.push(..varpool,finish);
-		var winform = ..win._form.getForm(winform.hwnd)
-		winform.setTimeout(
-    		function(){
-        		for( all,out,err in this.each() ){
-    				winform.webview.invoke("window.invoke",id,all,out,err)
-				}
-    			winform.webview.invoke("window.invoke",finishid)
-    		}
-    		,0
-		)
-	};
-```
+![87cc8aad69c5b2cfec25d23ea6c886f7.gif](https://img.aarbbs.com:1024/images/2022/06/08/87cc8aad69c5b2cfec25d23ea6c886f7.gif)
 
-### aardio + WebView2 示例代码：
+## 更新日志
 
-> 示例代码也是由【Runy】。
-```javascript
-import process;
-import process.popen;
-import win.ui;
-import web.view;
-import console;
+### 2022-06-08
 
-namespace process{
-    ..process_ = self
-}
+#### 变更
+
+* 参照 aardio 作者 Jacen He 更新的 “web.view（WebView2） + 调用本地 ping 命令，并回显到页面示例”，简化程序代码，利于后期维护。
+> 很赞同 aardio 作者所说的“扬长避短是智慧，倒行逆施最累人”，但作为一名 aardio 菜鸟用户，我是很乐意学习不同的实现目的的方法，因为我使用 aardio 写程序是个人兴趣，因为喜欢，所以想多了解一些是当然的啦。——感谢 aardio 作者、Runy 提供 ping 回显示例。
 
 
-var winform = win.form();
+### 2022-06-05
 
-winform.show();
+#### 优化
 
-var webview = web.view(winform);
-winform.webview = webview;
-
-..varpool = table.array();
-
-var aardio = {
-	winform:winform,
-	webview:webview,
-	process:..process,
-	process_:..process_,
-	varpool:..varpool
-};
-
-webview.exportHostObject("aardio",aardio);
-
-webview.html = `
-<script>
-    var aardio = window.chrome.webview.hostObjects.aardio;
-	var aardios = window.chrome.webview.hostObjects.sync.aardio;
-	window.invoke = (id,...data)=>{aardios.varpool[id - 1](...data)}
-
-    var p = aardios.process_.popen("ping baidu.com")
-    p.each2(aardios.winform,(a,o,e)=>{
-        document.write(o + '</br>')
-    },()=>{
-    	document.write("运行结束")
-    })
-</script>
-`
-
-win.loopMessage();
-```
-
-### Afile_fast_build_GUI 运行demo演示
-
-![d7f9551639ed6253462eff74ce680b1b.gif](https://img.aarbbs.com:1024/images/2022/06/04/d7f9551639ed6253462eff74ce680b1b.gif)
-
-
-## Afile_fast_build_GUI 使用说明
-
-。。。待补充
+* 使用一位好心的群友【Runy】大佬给的process回显方法
