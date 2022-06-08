@@ -245,7 +245,7 @@
                     
                     <div class="yu-input">
                           <input id="build-input" type="text" class="append" style="width:-webkit-calc(100% - 90px);" placeholder="编译命令">
-                          <button class="yu-button append primary" style="width:90px" onclick="goBuild(document.getElementById('build-input').value)">Build</button>
+                          <button class="yu-button append primary" style="width:90px" onclick="goBuild()">Build</button>
                     </div>
                     
                     <div id="build_log_editor"></div>
@@ -258,32 +258,26 @@
         </div>
     </body>
     <script src="./js/index.js"></script>
-    <script src="./ace/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
         var build_log_editor = ace.edit("build_log_editor");
         build_log_editor.setTheme("ace/theme/terminal");// 设置主题
         build_log_editor.setReadOnly(false);// 设置只读
         build_log_editor.setShowPrintMargin(false);// 设置打印边距
-    
-		var aardio = window.chrome.webview.hostObjects.aardio;
-		var aardios = window.chrome.webview.hostObjects.sync.aardio;
-		window.invoke = (id,...data)=>{aardios.varpool[id - 1](...data)}
 		
-		function goBuild(value) {
-			var patt = /make/;
-			var newValue;
-			if(patt.test(value)){
-				newValue = value.replace(/make/g, 'make.bat');
-			}else {
-				newValue = value;
+        goBuild = async() => {
+            var sBuildCommandValue = document.getElementById("build-input").value;
+            if (null == sBuildCommandValue) {
+                return false;
+            }
+			var patt = new RegExp("make");
+			if(patt.test(sBuildCommandValue)){
+				sBuildCommandValue = value.replace(/make/g, 'make.bat');
 			}
-			var p = aardios.process_.popen(newValue)
-			p.each2(aardios.mainForm,(all,out,err)=>{
-                build_log_editor.insert(out)
-			},()=>{
-                build_log_editor.insert("----Done!----")
-			})
-		}
+            //异步有异步的好处，扬长避短是智慧，倒行逆施最累人。
+            var result = await aardio.ping(sBuildCommandValue);
+            build_log_editor.insert(result);
+        };
     </script>
     
     <script type="text/javascript">
@@ -293,21 +287,21 @@
         var menuItems = document.querySelectorAll('.sub-menu .menu-item');
         
         function generateCompileCommand(compileType) {
-            var str = document.getElementById("header-title").innerText
+            var str = document.getElementById("header-title").innerText;
 			if(compileType == "new"){
 				document.getElementById("build-input").value = "make p=" + str.match("project_(.*?).mk")[1] 
-																+ " " + compileType + " <?=ini_compile_conf.job + ' ' + ini_compile_conf.j?>" 
+																+ " " + compileType + " <?=ini_compile_conf.job + ' ' + ini_compile_conf.j?>";
 			}else if(/app/.test(compileType)){
 				document.getElementById("build-input").value = "make p=" + str.match("project_(.*?).mk")[1] 
-																+ " m=" + compileType + " image update <?=ini_compile_conf.job + ' ' + ini_compile_conf.j?>" 
+																+ " m=" + compileType + " image update <?=ini_compile_conf.job + ' ' + ini_compile_conf.j?>";
 			}else if(/simulator/.test(compileType) && /resource/.test(compileType)){
 				document.getElementById("build-input").value = "make p=" + str.match("project_(.*?).mk")[1] 
-																+ " m=<?=ini_compile_type.simulator + ' ' + ini_compile_conf.job + ' ' + ini_compile_conf.j?>" 
+																+ " m=<?=ini_compile_type.simulator + ' ' + ini_compile_conf.job + ' ' + ini_compile_conf.j?>";
 				document.getElementById("build-input").value += " && make p=" + str.match("project_(.*?).mk")[1] 
-																+ " m=<?=ini_compile_type.resource + ' ' + ini_compile_conf.job + ' ' + ini_compile_conf.j?>" 
+																+ " m=<?=ini_compile_type.resource + ' ' + ini_compile_conf.job + ' ' + ini_compile_conf.j?>";
 			}else{
 				document.getElementById("build-input").value = "make p=" + str.match("project_(.*?).mk")[1] 
-																+ " m=" + compileType + " <?=ini_compile_conf.job + ' ' + ini_compile_conf.j?>" 
+																+ " m=" + compileType + " <?=ini_compile_conf.job + ' ' + ini_compile_conf.j?>";
 			} 
         }
 
@@ -358,7 +352,7 @@
 
                 //隐藏非当前点击的、上一次选中的菜单子项
                 if (-1 != menuItemActivedSub && e.currentTarget != menuItems[menuItemActivedSub]) {
-                    menuItems[menuItemActivedSub].classList.remove("active")
+                    menuItems[menuItemActivedSub].classList.remove("active");
                 }
                 document.getElementById("header-title").innerText = e.currentTarget.id;
                 //记录当前为选中状态的菜单子项下标

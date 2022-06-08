@@ -5,42 +5,30 @@ mainForm = win.form(text="Afile_fast_build_GUI";right=1199;bottom=699)
 mainForm.add()
 /*}}*/
 
-import console;
-import process;
-import process.popen;
 import web.view;
-
-namespace process{
-    ..process_ = self
-}
-
-var webview = web.view(mainForm);
+var wb = web.view(mainForm);
 
 if(!_STUDIO_INVOKED){
-	webview.enalbeDefaultContextMenus(false);
+	wb.enalbeDefaultContextMenus(false);
 }
 
-mainForm.webview = webview;
-
-..varpool = table.array();
-
-var aardio = {
-	mainForm:mainForm,
-	webview:webview,
-	process:..process,
-	process_:..process_,
-	varpool:..varpool,
-	console:..console
-};
-
-webview.exportHostObject("aardio",aardio);
+import process.popen;
+wb.external = {
+	ping = function(domain){
+		
+		//同步有同步的优势，扬长避短是智慧，倒行逆施最累人。 
+		var prcs = process.popen(domain);
+		import console
+		for( all,out,err in prcs.each() ){
+		    wb.invoke("build_log_editor.insert",all); 
+		}
+		return "----End!----"
+	} 
+}
 
 import wsock.tcp.simpleHttpServer; 
-var url = wsock.tcp.simpleHttpServer.startSpaUrl("\web\index.aardio")
-webview.go( url );
-
-webview.wait("")
-webview.doScript("document.getElementById('build-input').value = 'ping baidu.com'");
+url = wsock.tcp.simpleHttpServer.startSpaUrl("\web\index.aardio")
+wb.go( url );
 
 mainForm.show();
 return win.loopMessage();
