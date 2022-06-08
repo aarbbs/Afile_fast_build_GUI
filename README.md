@@ -4,6 +4,10 @@
 
 特色功能：makefile 工程文件分类、常用构建指令配置和快速选用、一键构建工程、error 信息高亮显示等...
 
+## 运行演示
+
+![87cc8aad69c5b2cfec25d23ea6c886f7.gif](https://img.aarbbs.com:1024/images/2022/06/08/87cc8aad69c5b2cfec25d23ea6c886f7.gif)
+
 ## 更新日志
 
 ### 2022-06-08
