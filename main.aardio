@@ -20,7 +20,8 @@ wb.external = {
 		var prcs = process.popen(domain);
 		import console
 		for( all,out,err in prcs.each() ){
-		    wb.invoke("build_log_editor.insert",all); 
+		    //wb.invoke("build_log_editor.insert",all); 
+		    wb.invoke("insertAtTheEndOfEditor", all); 
 		}
 		return "----End!----"
 	} 

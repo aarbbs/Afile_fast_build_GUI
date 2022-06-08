@@ -244,7 +244,7 @@
                     </div>
                     
                     <div class="yu-input">
-                          <input id="build-input" type="text" class="append" style="width:-webkit-calc(100% - 90px);" placeholder="编译命令">
+                          <input id="build-input" value="ping baidu.com" type="text" class="append" style="width:-webkit-calc(100% - 90px);" placeholder="编译命令">
                           <button class="yu-button append primary" style="width:90px" onclick="goBuild()">Build</button>
                     </div>
                     
@@ -262,9 +262,24 @@
     <script type="text/javascript">
         var build_log_editor = ace.edit("build_log_editor");
         build_log_editor.setTheme("ace/theme/terminal");// 设置主题
-        build_log_editor.setReadOnly(false);// 设置只读
+        build_log_editor.getSession().setMode("ace/mode/log");// 设置程序语言模式
+        build_log_editor.setReadOnly(true);// 设置只读
+        build_log_editor.renderer.setShowGutter(false);// 设置行号
         build_log_editor.setShowPrintMargin(false);// 设置打印边距
-		
+        build_log_editor.setHighlightActiveLine(false);// 设置选中高亮
+        build_log_editor.setOption("wrap", "free");// 自动换行，free:开，off:关
+        
+        build_log_editor.session.on('change', () => {
+            build_log_editor.renderer.scrollToLine(Number.POSITIVE_INFINITY)
+        })
+        
+        function insertAtTheEndOfEditor(all){
+            var customPosition = {
+                row: build_log_editor.session.getLength(), column: 0
+            };
+            build_log_editor.session.insert(customPosition , all);
+        }
+        
         goBuild = async() => {
             var sBuildCommandValue = document.getElementById("build-input").value;
             if (null == sBuildCommandValue) {
@@ -275,8 +290,7 @@
 				sBuildCommandValue = value.replace(/make/g, 'make.bat');
 			}
             //异步有异步的好处，扬长避短是智慧，倒行逆施最累人。
-            var result = await aardio.ping(sBuildCommandValue);
-            build_log_editor.insert(result);
+            await aardio.ping(sBuildCommandValue);
         };
     </script>
     
