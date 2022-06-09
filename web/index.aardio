@@ -104,36 +104,35 @@
 <?
     import fsys;
     import fsys.ini
-    import console;
-    配置文件 = "\Afile_fast_build_GUI.ini"
+    configFile = io.splitpath(io._exefile).name + ".ini"
 
-    if not io.exist(配置文件){
-        ini = fsys.ini(配置文件);
+    if not io.exist(configFile){
+        var ini = fsys.ini(configFile);
 
-        ini_app = ini.getSection("软件配置");
-        ini_app.路径 = "./res/makefile";
-        ini_app.文件名 = "project_*.mk";
-        ini_app.save();
+        ini_makefile = ini.getSection("Makefile");
+        ini_makefile.路径 = "./res/makefile";
+        ini_makefile.文件名 = "project_*.mk";
+        ini_makefile.save();
 
-        ini_compile_type = ini.getSection("编译模块配置");
-        ini_compile_type.new = "new";
-        ini_compile_type.app = "app";
-        ini_compile_type.simulator = "simulator";
-        ini_compile_type.resource = "resource";
-        ini_compile_type.simulator_resource = "simulator-resource";
-        ini_compile_type.save();
+        ini_build_type = ini.getSection("编译模块配置");
+        ini_build_type.new = "new";
+        ini_build_type.app = "app";
+        ini_build_type.simulator = "simulator";
+        ini_build_type.resource = "resource";
+        ini_build_type.simulator_resource = "simulator-resource";
+        ini_build_type.save();
 
-        ini_compile_conf = ini.getSection("编译配置");
-        ini_compile_conf.job = "job=8";
-        ini_compile_conf.j = "-j4";
-        ini_compile_conf.save();
+        ini_build_config = ini.getSection("编译配置");
+        ini_build_config.job = "job=8";
+        ini_build_config.j = "-j4";
+        ini_build_config.save();
         ini_market = ini.getSection("市场");
         ini_market.save();
     }else {
-        ini = fsys.ini(配置文件)
-        ini_app = ini.getSection("软件配置");
-        ini_compile_type = ini.getSection("编译模块配置");
-        ini_compile_conf = ini.getSection("编译配置");
+        ini = fsys.ini(configFile)
+        ini_makefile = ini.getSection("Makefile");
+        ini_build_type = ini.getSection("编译模块配置");
+        ini_build_config = ini.getSection("编译配置");
         ini_market = ini.getSection("市场");
     }
 
@@ -181,7 +180,7 @@
         return temp;
     }
     //获取所有文件名
-    var allPrjFileName = getAllProjectFiles(ini_app.路径, ini_app.文件名);
+    var allPrjFileName = getAllProjectFiles(ini_makefile.路径, ini_makefile.文件名);
 
     //设置文件名、项目名的键值对
     var allPrjFileDict = listToDict(allPrjFileName);
@@ -214,7 +213,14 @@
                                                 marketTemp = string.split(marketTemp[#marketTemp],".")[1];
                                                 prjMaket = ini_market[marketTemp] ? ini_market[marketTemp] : string.find(marketTemp,"^En") ? "OP" : marketTemp;
                                 ?>
-                                    <div id="<?= io._exedir ++ prjFile.project_file_name?>" class="menu-item" style="padding-left: 30px">
+                                    <div id="<?
+                                                var makefilePath = ini_makefile.路径;
+                                                string.replace(ini.getSection('Makefile').路径, '/', '\\');
+                                    			if(!string.endWith(makefilePath,'\\')){
+                                    				makefilePath = makefilePath + '\\';
+                                    			}
+                                                print(io.fullpath(makefilePath ++ prjFile.project_file_name))
+                                            ?>" class="menu-item" style="padding-left: 30px">
                                         <?=prjName ++ "-" ++ prjMaket?>
                                     </div>
                                 <?
@@ -230,12 +236,12 @@
                     </div>
                 </div>
                 <div class="yu-layout-block">
-                    <div id="header-title" class="yu-alert primary">makefile 完整路径</div>
+                    <div id="header-title" class="yu-alert primary"></div>
                     
                     <div class="yu-button-group">
                         <?
-                            for(k,commd in ini_compile_type){
-                            //for(i=1;#ini_compile_type;1){
+                            for(k,commd in ini_build_type){
+                            //for(i=1;#ini_build_type;1){
                         ?>
     						<button class="yu-button primary plain" onclick="generateCompileCommand(this.innerHTML)"><?=commd?></button>
                         <?
@@ -263,21 +269,18 @@
         var build_log_editor = ace.edit("build_log_editor");
         build_log_editor.setTheme("ace/theme/terminal");// 设置主题
         build_log_editor.getSession().setMode("ace/mode/log");// 设置程序语言模式
-        build_log_editor.setReadOnly(true);// 设置只读
+        build_log_editor.setReadOnly(false);// 设置只读
         build_log_editor.renderer.setShowGutter(false);// 设置行号
         build_log_editor.setShowPrintMargin(false);// 设置打印边距
         build_log_editor.setHighlightActiveLine(false);// 设置选中高亮
         build_log_editor.setOption("wrap", "free");// 自动换行，free:开，off:关
         
-        build_log_editor.session.on('change', () => {
-            build_log_editor.renderer.scrollToLine(Number.POSITIVE_INFINITY)
-        })
-        
-        function insertAtTheEndOfEditor(all){
+        function insertAtTheEndOfEditor(string){
             var customPosition = {
                 row: build_log_editor.session.getLength(), column: 0
             };
-            build_log_editor.session.insert(customPosition , all);
+            build_log_editor.session.insert(customPosition , string);
+            build_log_editor.renderer.scrollToLine(Number.POSITIVE_INFINITY)
         }
         
         goBuild = async() => {
@@ -285,10 +288,6 @@
             if (null == sBuildCommandValue) {
                 return false;
             }
-			var patt = new RegExp("make");
-			if(patt.test(sBuildCommandValue)){
-				sBuildCommandValue = value.replace(/make/g, 'make.bat');
-			}
             //异步有异步的好处，扬长避短是智慧，倒行逆施最累人。
             await aardio.ping(sBuildCommandValue);
         };
@@ -302,20 +301,23 @@
         
         function generateCompileCommand(compileType) {
             var str = document.getElementById("header-title").innerText;
+            if(str.length == 0){
+                return;
+            }
 			if(compileType == "new"){
 				document.getElementById("build-input").value = "make p=" + str.match("project_(.*?).mk")[1] 
-																+ " " + compileType + " <?=ini_compile_conf.job + ' ' + ini_compile_conf.j?>";
+																+ " " + compileType + " <?=ini_build_config.job + ' ' + ini_build_config.j?>";
 			}else if(/app/.test(compileType)){
 				document.getElementById("build-input").value = "make p=" + str.match("project_(.*?).mk")[1] 
-																+ " m=" + compileType + " image update <?=ini_compile_conf.job + ' ' + ini_compile_conf.j?>";
+																+ " m=" + compileType + " image update <?=ini_build_config.job + ' ' + ini_build_config.j?>";
 			}else if(/simulator/.test(compileType) && /resource/.test(compileType)){
 				document.getElementById("build-input").value = "make p=" + str.match("project_(.*?).mk")[1] 
-																+ " m=<?=ini_compile_type.simulator + ' ' + ini_compile_conf.job + ' ' + ini_compile_conf.j?>";
+																+ " m=<?=ini_build_type.simulator + ' ' + ini_build_config.job + ' ' + ini_build_config.j?>";
 				document.getElementById("build-input").value += " && make p=" + str.match("project_(.*?).mk")[1] 
-																+ " m=<?=ini_compile_type.resource + ' ' + ini_compile_conf.job + ' ' + ini_compile_conf.j?>";
+																+ " m=<?=ini_build_type.resource + ' ' + ini_build_config.job + ' ' + ini_build_config.j?>";
 			}else{
 				document.getElementById("build-input").value = "make p=" + str.match("project_(.*?).mk")[1] 
-																+ " m=" + compileType + " <?=ini_compile_conf.job + ' ' + ini_compile_conf.j?>";
+																+ " m=" + compileType + " <?=ini_build_config.job + ' ' + ini_build_config.j?>";
 			} 
         }
 

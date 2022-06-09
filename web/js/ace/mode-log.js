@@ -7,15 +7,15 @@ var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
 var LogHighlightRules = function() {
 
     var keywords = (
-        "error|errors"
+        "error|errors|fail|missing|synatax|undefined|unexpected|permission|denied"
     );
 
     var builtinConstants = (
-        "true|false"
+        ""
     );
 
     var builtinFunctions = (
-        ""
+        "line|lines|success"
     );
 
     var dataTypes = (
@@ -33,9 +33,6 @@ var LogHighlightRules = function() {
         "start" : [ {
             token : keywordMapper,
             regex : "[a-zA-Z_$][a-zA-Z0-9_$]*\\b"
-        }, {
-            token : "keyword.operator",
-            regex : "\\+|\\-|\\/|\\/\\/|%|<@>|@>|<@|&|\\^|~|<|>|<=|=>|==|!=|<>|="
         }]
     };
     this.normalizeRules();
